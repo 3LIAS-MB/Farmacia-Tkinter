@@ -1,2 +1,24 @@
-/prompt.txt
-prompt.txt
+# Bytecode compilado
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+venv/
+env/
+
+# Archivos de base de datos locales
+*.db
+
+# Archivos de log
+*.log
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de editores
+.vscode/
+.idea/
+
+prompt
+/prompt

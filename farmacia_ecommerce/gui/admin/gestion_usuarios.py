@@ -3,6 +3,7 @@ from tkinter import ttk, messagebox
 from models.usuario import Usuario
 from utils.validaciones import validar_no_vacio
 
+
 class GestionUsuarios:
     """Ventana para la gestión CRUD de usuarios."""
 
@@ -27,21 +28,30 @@ class GestionUsuarios:
         table_frame.pack(expand=True, fill=tk.BOTH, pady=10)
 
         # --- Formulario ---
-        ttk.Label(form_frame, text="Username:").grid(row=0, column=0, sticky=tk.W, padx=5, pady=5)
+        ttk.Label(form_frame, text="Username:").grid(
+            row=0, column=0, sticky=tk.W, padx=5, pady=5
+        )
         self.username_entry = ttk.Entry(form_frame, width=30)
         self.username_entry.grid(row=0, column=1, sticky=tk.EW, padx=5)
 
-        ttk.Label(form_frame, text="Password:").grid(row=0, column=2, sticky=tk.W, padx=5, pady=5)
+        ttk.Label(form_frame, text="Password:").grid(
+            row=0, column=2, sticky=tk.W, padx=5, pady=5
+        )
         self.password_entry = ttk.Entry(form_frame, show="*")
         self.password_entry.grid(row=0, column=3, sticky=tk.EW, padx=5)
-        ttk.Label(form_frame, text="(Dejar en blanco para no cambiar)").grid(row=1, column=3, sticky=tk.W, padx=5)
+        ttk.Label(form_frame, text="(Dejar en blanco para no cambiar)").grid(
+            row=1, column=3, sticky=tk.W, padx=5
+        )
 
-
-        ttk.Label(form_frame, text="Rol:").grid(row=0, column=4, sticky=tk.W, padx=5, pady=5)
-        self.rol_combobox = ttk.Combobox(form_frame, values=["cliente", "admin"], state="readonly")
+        ttk.Label(form_frame, text="Rol:").grid(
+            row=0, column=4, sticky=tk.W, padx=5, pady=5
+        )
+        self.rol_combobox = ttk.Combobox(
+            form_frame, values=["cliente", "admin"], state="readonly"
+        )
         self.rol_combobox.grid(row=0, column=5, sticky=tk.EW, padx=5)
         self.rol_combobox.set("cliente")
-        
+
         form_frame.grid_columnconfigure(1, weight=1)
         form_frame.grid_columnconfigure(3, weight=1)
         form_frame.grid_columnconfigure(5, weight=1)
@@ -49,14 +59,24 @@ class GestionUsuarios:
         # --- Botones del Formulario ---
         btn_frame = ttk.Frame(form_frame)
         btn_frame.grid(row=2, column=0, columnspan=6, pady=10)
-        
-        ttk.Button(btn_frame, text="Crear", command=self._crear_usuario).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Modificar", command=self._modificar_usuario).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Eliminar", command=self._eliminar_usuario).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Limpiar", command=self._limpiar_formulario).pack(side=tk.LEFT, padx=5)
+
+        ttk.Button(btn_frame, text="Crear", command=self._crear_usuario).pack(
+            side=tk.LEFT, padx=5
+        )
+        ttk.Button(btn_frame, text="Modificar", command=self._modificar_usuario).pack(
+            side=tk.LEFT, padx=5
+        )
+        ttk.Button(btn_frame, text="Eliminar", command=self._eliminar_usuario).pack(
+            side=tk.LEFT, padx=5
+        )
+        ttk.Button(btn_frame, text="Limpiar", command=self._limpiar_formulario).pack(
+            side=tk.LEFT, padx=5
+        )
 
         # --- Tabla (Treeview) ---
-        self.tree = ttk.Treeview(table_frame, columns=("ID", "Username", "Rol"), show="headings")
+        self.tree = ttk.Treeview(
+            table_frame, columns=("ID", "Username", "Rol"), show="headings"
+        )
         self.tree.heading("ID", text="ID")
         self.tree.heading("Username", text="Nombre de Usuario")
         self.tree.heading("Rol", text="Rol")
@@ -66,16 +86,20 @@ class GestionUsuarios:
         self.tree.column("Rol", width=100, anchor=tk.CENTER)
 
         self.tree.pack(expand=True, fill=tk.BOTH, side=tk.LEFT)
-        
+
         # Scrollbar
-        scrollbar = ttk.Scrollbar(table_frame, orient=tk.VERTICAL, command=self.tree.yview)
+        scrollbar = ttk.Scrollbar(
+            table_frame, orient=tk.VERTICAL, command=self.tree.yview
+        )
         self.tree.configure(yscroll=scrollbar.set)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         self.tree.bind("<<TreeviewSelect>>", self._on_item_select)
 
         # Botón para volver
-        ttk.Button(main_frame, text="Volver al Menú", command=self._volver).pack(pady=10)
+        ttk.Button(main_frame, text="Volver al Menú", command=self._volver).pack(
+            pady=10
+        )
 
         self.selected_user_id = None
         self._cargar_usuarios()
@@ -86,13 +110,13 @@ class GestionUsuarios:
         height = self.root.winfo_height()
         x = (self.root.winfo_screenwidth() // 2) - (width // 2)
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
-        self.root.geometry(f'{width}x{height}+{x}+{y}')
+        self.root.geometry(f"{width}x{height}+{x}+{y}")
 
     def _cargar_usuarios(self):
         """Carga o recarga los usuarios en el Treeview."""
         for item in self.tree.get_children():
             self.tree.delete(item)
-        
+
         usuarios = Usuario.listar()
         for user in usuarios:
             self.tree.insert("", tk.END, values=user)
@@ -102,9 +126,9 @@ class GestionUsuarios:
         selected_items = self.tree.selection()
         if not selected_items:
             return
-        
+
         item = self.tree.item(selected_items[0])
-        user_id, username, rol = item['values']
+        user_id, username, rol = item["values"]
 
         self.selected_user_id = user_id
         self.username_entry.delete(0, tk.END)
@@ -126,7 +150,12 @@ class GestionUsuarios:
         password = self.password_entry.get()
         rol = self.rol_combobox.get()
 
-        if not all([validar_no_vacio(username, "Username"), validar_no_vacio(password, "Password")]):
+        if not all(
+            [
+                validar_no_vacio(username, "Username"),
+                validar_no_vacio(password, "Password"),
+            ]
+        ):
             return
 
         if Usuario.crear(username, password, rol):
@@ -139,7 +168,9 @@ class GestionUsuarios:
     def _modificar_usuario(self):
         """Modifica un usuario existente."""
         if self.selected_user_id is None:
-            messagebox.showwarning("Advertencia", "Seleccione un usuario para modificar.")
+            messagebox.showwarning(
+                "Advertencia", "Seleccione un usuario para modificar."
+            )
             return
 
         username = self.username_entry.get()
@@ -154,8 +185,11 @@ class GestionUsuarios:
             # Aquí se debería llamar a un método para cambiar también la contraseña
             # Por simplicidad, este ejemplo solo actualiza username y rol.
             # Para una app real, se necesitaría un Usuario.modificar_con_pass()
-            messagebox.showwarning("Info", "La modificación de contraseña no está implementada en este formulario. Solo se actualizarán el username y el rol.")
-        
+            messagebox.showwarning(
+                "Info",
+                "La modificación de contraseña no está implementada en este formulario. Solo se actualizarán el username y el rol.",
+            )
+
         Usuario.modificar(self.selected_user_id, username, rol)
         messagebox.showinfo("Éxito", "Usuario modificado correctamente.")
         self._cargar_usuarios()
@@ -164,14 +198,18 @@ class GestionUsuarios:
     def _eliminar_usuario(self):
         """Elimina un usuario seleccionado."""
         if self.selected_user_id is None:
-            messagebox.showwarning("Advertencia", "Seleccione un usuario para eliminar.")
+            messagebox.showwarning(
+                "Advertencia", "Seleccione un usuario para eliminar."
+            )
             return
-        
-        if self.selected_user_id == self.user_info['id']:
+
+        if self.selected_user_id == self.user_info["id"]:
             messagebox.showerror("Error", "No puede eliminar a su propio usuario.")
             return
 
-        if messagebox.askyesno("Confirmar", "¿Está seguro de que desea eliminar este usuario?"):
+        if messagebox.askyesno(
+            "Confirmar", "¿Está seguro de que desea eliminar este usuario?"
+        ):
             Usuario.eliminar(self.selected_user_id)
             messagebox.showinfo("Éxito", "Usuario eliminado correctamente.")
             self._cargar_usuarios()
@@ -181,6 +219,7 @@ class GestionUsuarios:
         """Vuelve al menú principal del administrador."""
         self.root.destroy()
         from gui.admin.menu_admin import MenuAdmin
+
         new_root = tk.Tk()
         MenuAdmin(new_root, self.user_info)
         new_root.mainloop()

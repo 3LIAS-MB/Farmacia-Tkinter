@@ -3,6 +3,7 @@ from tkinter import ttk
 from gui.admin.gestion_usuarios import GestionUsuarios
 from gui.admin.gestion_productos import GestionProductos
 
+
 class MenuAdmin:
     """Menú principal para el administrador."""
 
@@ -17,17 +18,29 @@ class MenuAdmin:
         # Frame principal
         main_frame = ttk.Frame(self.root, padding="20")
         main_frame.pack(expand=True, fill=tk.BOTH)
-        
-        ttk.Label(main_frame, text="Menú Principal", font=('Helvetica', 16, 'bold')).pack(pady=10)
+
+        ttk.Label(
+            main_frame, text="Menú Principal", font=("Helvetica", 16, "bold")
+        ).pack(pady=10)
 
         # Botones del menú
         btn_style = ttk.Style()
-        btn_style.configure('Admin.TButton', font=('Helvetica', 12), padding=10)
+        btn_style.configure("Admin.TButton", font=("Helvetica", 12), padding=10)
 
-        btn_users = ttk.Button(main_frame, text="Gestión de Usuarios", style='Admin.TButton', command=self.open_gestion_usuarios)
+        btn_users = ttk.Button(
+            main_frame,
+            text="Gestión de Usuarios",
+            style="Admin.TButton",
+            command=self.open_gestion_usuarios,
+        )
         btn_users.pack(pady=10, fill=tk.X)
 
-        btn_products = ttk.Button(main_frame, text="Gestión de Productos", style='Admin.TButton', command=self.open_gestion_productos)
+        btn_products = ttk.Button(
+            main_frame,
+            text="Gestión de Productos",
+            style="Admin.TButton",
+            command=self.open_gestion_productos,
+        )
         btn_products.pack(pady=10, fill=tk.X)
 
         btn_logout = ttk.Button(main_frame, text="Cerrar Sesión", command=self.logout)
@@ -40,7 +53,7 @@ class MenuAdmin:
         height = self.root.winfo_height()
         x = (self.root.winfo_screenwidth() // 2) - (width // 2)
         y = (self.root.winfo_screenheight() // 2) - (height // 2)
-        self.root.geometry(f'{width}x{height}+{x}+{y}')
+        self.root.geometry(f"{width}x{height}+{x}+{y}")
 
     def open_gestion_usuarios(self):
         """Abre la ventana de gestión de usuarios."""
@@ -60,6 +73,7 @@ class MenuAdmin:
         """Cierra la sesión y vuelve a la pantalla de login."""
         self.root.destroy()
         from gui.login import LoginWindow
+
         new_root = tk.Tk()
         LoginWindow(new_root)
         new_root.mainloop()

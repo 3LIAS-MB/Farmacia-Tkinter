@@ -20,5 +20,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-prompt
-/prompt
+# Prompt file
+prompt.txt
+/prompt.txt

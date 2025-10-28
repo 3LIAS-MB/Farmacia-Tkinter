@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+
 from config.database import DatabaseManager
 from gui.login import LoginWindow
 

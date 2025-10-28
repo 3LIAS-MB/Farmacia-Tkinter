@@ -2,9 +2,7 @@ import sqlite3
 import hashlib
 
 class DatabaseManager:
-    """
-    Gestiona la conexión y las operaciones con la base de datos SQLite.
-    """
+    # Gestiona la conexión y las operaciones con la base de datos SQLite. (constructor)
     def __init__(self, db_path='farmacia.db'):
         self.db_path = db_path
 
@@ -13,37 +11,27 @@ class DatabaseManager:
         return sqlite3.connect(self.db_path)
 
     def execute_query(self, query, params=(), commit=False):
-        """
-        Ejecuta una consulta SQL.
-        
-        :param query: La consulta SQL a ejecutar.
-        :param params: Los parámetros para la consulta.
-        :param commit: True si la transacción debe ser confirmada.
-        :return: El cursor de la ejecución.
-        """
         try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(query, params)
                 if commit:
                     conn.commit()
+                print(f"Ejecutada consulta: {query} con params XD: {params}")       
                 return cursor
         except sqlite3.Error as e:
             print(f"Error en la base de datos: {e}")
             return None
 
     def fetch_all(self, query, params=()):
-        """Ejecuta una consulta y retorna todos los resultados."""
         cursor = self.execute_query(query, params)
         return cursor.fetchall() if cursor else []
 
     def fetch_one(self, query, params=()):
-        """Ejecuta una consulta y retorna un único resultado."""
         cursor = self.execute_query(query, params)
         return cursor.fetchone() if cursor else None
 
-    def _create_tables(self):
-        """Crea las tablas de la base de datos si no existen."""
+    def _create_tables(self): 
         queries = [
             """
             CREATE TABLE IF NOT EXISTS Usuarios (
@@ -97,8 +85,6 @@ class DatabaseManager:
         print("Tablas creadas o ya existentes.")
 
     def _insert_initial_data(self):
-        """Inserta datos iniciales para el funcionamiento del sistema."""
-        
         def hash_password(password):
             return hashlib.sha256(password.encode()).hexdigest()
 

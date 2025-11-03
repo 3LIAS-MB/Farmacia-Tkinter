@@ -4,11 +4,6 @@ from models.sucursal import Sucursal
 
 
 class SeleccionSucursal:
-    """
-    Ventana para seleccionar una sucursal.
-    Esta clase puede ser instanciada y mostrada como un diálogo modal.
-    """
-
     def __init__(self, parent):
         self.dialog = tk.Toplevel(parent)
         self.dialog.title("Seleccionar Sucursal")

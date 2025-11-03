@@ -5,8 +5,6 @@ from utils.validaciones import validar_no_vacio, validar_precio, validar_numero
 
 
 class GestionProductos:
-    """Ventana para la gestión CRUD de productos."""
-
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

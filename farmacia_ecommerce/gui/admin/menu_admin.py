@@ -5,8 +5,6 @@ from gui.admin.gestion_productos import GestionProductos
 
 
 class MenuAdmin:
-    """Menú principal para el administrador."""
-
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

@@ -7,8 +7,6 @@ from gui.cliente.menu_cliente import MenuCliente
 
 
 class LoginWindow:
-    """Ventana de inicio de sesión."""
-
     def __init__(self, root):
         self.root = root
         self.root.title("Farmacia E-commerce - Login")

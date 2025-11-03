@@ -4,8 +4,7 @@ from models.producto import Producto
 
 
 class ConsultaProductos:
-    """Ventana para que el cliente consulte productos."""
-
+    # Ventana para que el cliente consulte productos.
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

@@ -1,9 +1,8 @@
 from config.database import DatabaseManager
 
 
+# Modelo para la gestión de productos en la base de datos.
 class Producto:
-    """Modelo para la gestión de productos en la base de datos."""
-
     db = DatabaseManager()
 
     @classmethod

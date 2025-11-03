@@ -2,8 +2,8 @@ from config.database import DatabaseManager
 from models.producto import Producto
 
 
+# Modelo para gestionar las ventas y sus detalles
 class Venta:
-    # Modelo para gestionar las ventas y sus detalles
     db = DatabaseManager()
 
     @classmethod

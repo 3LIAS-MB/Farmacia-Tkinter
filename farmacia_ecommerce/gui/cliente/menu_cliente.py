@@ -5,8 +5,7 @@ from gui.cliente.proceso_compra import ProcesoCompra
 
 
 class MenuCliente:
-    """Menú principal para el cliente."""
-
+    # Menú principal para el cliente.
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

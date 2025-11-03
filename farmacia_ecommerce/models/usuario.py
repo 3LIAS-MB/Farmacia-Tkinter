@@ -2,8 +2,8 @@ import hashlib
 from config.database import DatabaseManager
 
 
+# Modelo para la gestión de usuarios en la base de datos
 class Usuario:
-    # Modelo para la gestión de usuarios en la base de datos
     db = DatabaseManager()
 
     @staticmethod

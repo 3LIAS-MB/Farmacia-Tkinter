@@ -5,8 +5,7 @@ from models.venta import Venta  # Necesitaremos crear este modelo
 
 
 class ProcesoCompra:
-    """Ventana para el proceso de compra y gestión del carrito."""
-
+    # Ventana para el proceso de compra y gestión del carrito.
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

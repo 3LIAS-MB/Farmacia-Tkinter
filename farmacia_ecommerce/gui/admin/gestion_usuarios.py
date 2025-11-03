@@ -5,8 +5,7 @@ from utils.validaciones import validar_no_vacio
 
 
 class GestionUsuarios:
-    """Ventana para la gestión CRUD de usuarios."""
-
+    # Ventana para la gestión CRUD de usuarios.
     def __init__(self, root, user_info):
         self.root = root
         self.user_info = user_info

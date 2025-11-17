@@ -46,7 +46,6 @@ class LoginWindow:
         main_frame.grid_columnconfigure(1, weight=1)
 
     def center_window(self):
-        """Centra la ventana en la pantalla."""
         self.root.update_idletasks()
         width = self.root.winfo_width()
         height = self.root.winfo_height()
@@ -55,7 +54,6 @@ class LoginWindow:
         self.root.geometry(f"{width}x{height}+{x}+{y}")
 
     def _handle_login(self):
-        """Gestiona el evento de clic en el botón de login."""
         username = self.username_entry.get()
         password = self.password_entry.get()
 
@@ -78,7 +76,6 @@ class LoginWindow:
             messagebox.showerror("Error", "Credenciales incorrectas.")
 
     def _redirect(self):
-        """Redirige al menú correspondiente según el rol del usuario."""
         new_root = tk.Tk()
         if self.user_info["rol"] == "admin":
             MenuAdmin(new_root, self.user_info)

@@ -21,7 +21,6 @@ class Venta:
 
             # 2. Insertar en DetalleVentas y actualizar stock
             for item in detalles:
-                # Insertar detalle
                 detalle_query = "INSERT INTO DetalleVentas (id_venta, id_producto, cantidad, subtotal) VALUES (?, ?, ?, ?)"
                 cursor.execute(
                     detalle_query,

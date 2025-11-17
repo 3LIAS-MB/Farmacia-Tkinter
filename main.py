@@ -6,7 +6,6 @@ from gui.login import LoginWindow
 
 
 def setup_styles():
-    """Configura estilos globales para la aplicación ttk."""
     style = ttk.Style()
     style.theme_use("clam")
 
@@ -14,12 +13,17 @@ def setup_styles():
     style.configure(
         "TButton",
         font=("Helvetica", 10),
-        padding=5,
-        background="#e0e0e0",
-        borderwidth=1,
-        relief="raised",
+        padding=6,
+        background="#2E7D32",
+        foreground="white",
     )
-    style.map("TButton", background=[("active", "#c0c0c0")])
+    style.map(
+        "TButton",
+        background=[
+            ("active", "#27632A"),
+            ("pressed", "#1B5E20"),
+        ],
+    )
 
     # Estilo para Labels
     style.configure("TLabel", font=("Helvetica", 11), padding=5)

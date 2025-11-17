@@ -17,7 +17,6 @@ class DatabaseManager:
                 cursor.execute(query, params)
                 if commit:
                     conn.commit()
-                print(f"Ejecutada consulta: {query} con params XD: {params}")
                 return cursor
         except sqlite3.Error as e:
             print(f"Error en la base de datos: {e}")
@@ -127,7 +126,6 @@ class DatabaseManager:
         print("Datos iniciales insertados.")
 
     def init_db(self):
-        """Inicializa la base de datos: crea tablas e inserta datos iniciales."""
         self._create_tables()
         self._insert_initial_data()
 
